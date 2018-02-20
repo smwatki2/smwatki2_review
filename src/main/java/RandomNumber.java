@@ -5,7 +5,7 @@ package main.java;
  *  for pseudorandom number generation.
  *  <p>
  *  An instance of this class is used to generate a stream of 
- *  pseudorandom numbers. The class uses a long seed, which is 
+ *  pseudorandom numbers. The class uses a long currentSeed, which is 
  *  modified using a linear congruential formula. See <ul>
  *  <li>Donald Knuth, <i>The Art of Computer Programming, 
  *  Volume 2</i>, Section 3.2.1. for general information about
@@ -26,26 +26,26 @@ public class RandomNumber {
         private static final long REM  = 2836;   
 
         /**
-         * The current seed of the generator. 
+         * The current currentSeed of the generator. 
          */
-        private long seed;
+        private long currentSeed;
     
         /**
          * Constructs a RandomNumber object and initializes it
          * with <code>System.currentTimeMillis()</code>
          */
         public RandomNumber() {
-                seed = System.currentTimeMillis() % MODULUS;
+                currentSeed = System.currentTimeMillis() % MODULUS;
         }
     
         /**
          * Constructs a RandomNumber object and initializes it
-         * with the value <code>seed</code>
-         * @param seed A value that permits a controlled 
-         * setting of the start seed.
+         * with the value <code>currentSeed</code>
+         * @param currentSeed A value that permits a controlled 
+         * setting of the start currentSeed.
          */
-        public RandomNumber(long seed) {
-                seed = Math.abs(seed) % MODULUS;
+        public RandomNumber(long currentSeed) {
+                currentSeed = Math.abs(currentSeed) % MODULUS;
         }
                 
         
@@ -54,10 +54,10 @@ public class RandomNumber {
          * @return The next random number in [0,1].
          */
         public double nextDoubleRand() {
-                long temp = MULTIPLIER*(seed%QUOT) - 
-                                REM*(seed/QUOT);
-                seed = (temp > 0) ? temp : temp + MODULUS;
-                return (double) seed / (double) MODULUS;
+                long temp = MULTIPLIER*(currentSeed%QUOT) - 
+                                REM*(currentSeed/QUOT);
+                currentSeed = (temp > 0) ? temp : temp + MODULUS;
+                return (double) currentSeed / (double) MODULUS;
         }
         
         /**
