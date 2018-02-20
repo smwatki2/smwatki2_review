@@ -49,10 +49,10 @@ class AlgoTest {
         array[1] = new Item(4);
         array[2] = new Item(3);
         SortAlgos.bubbleSort(array);
-        System.out.println(array[0].key);
-        assertTrue(array[0].key == 3);
-        assertTrue(array[1].key == 4);
-        assertTrue(array[2].key == 5);
+        System.out.println(array[0].getKey());
+        assertTrue(array[0].getKey() == 3);
+        assertTrue(array[1].getKey() == 4);
+        assertTrue(array[2].getKey() == 5);
     }
 }
 
